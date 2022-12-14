@@ -1,0 +1,178 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class GUI  {
+- frame: JFrame
+- textFieldOpen: JTextField
+- TextFieldSave: JTextField
+- t1: Thread
+- lblGenVar: JLabel
+- lblimpVar : JLabel
+- lblFitnessVal: JLabel
+- lblimage2: JLabel
+- BetterFilePath: JLabel
+- GenVal: long
+- ImpVal:long
+- FitnessVal: double
+- OldFitness: double
+- NewFitness: double
++ GUI()
+- start():void
+- stop(): void
+- initialize(): void
++ paint(Graphics g): void
++ FileSaveDialog() String
++ setText(final JLabel label, final String text):void
++ getFitnessVal(): double
++ setFitnessVal (double fitnessVal): void
++ BetterFilePath(String Path): void
++ Compare(String PathOri): void
+
+
+}
+class Image{
++ AbsPath: String
++ Image()
++ getBufImg(String AbsPath): BufferedImage
++ DisplayImage(String AbsPath): void
++ ResizeAbs(String inputImagePath, String outputImagePath, int scaledWidth, int scaledHeight):void
++ ResizePer(String inputImagePath,String outputImagePath, double percent):void
++ ResizeImg(String AbsPath, JPanel pan): ImageIcon
+
+
+}
+class Fitness {
+- OriImage: BufferedImage
+- CompImage: BufferedImage
+- deltaRed: double
+- deltaRed: double
+- deltaBlue: double
+- pixleFitness: double
+- fitness: double
+- OldFitness: double
+- better: boolean
+
+
+}
+class Fitness {
+- OriImage: BufferedImage
+- CompImage: BufferedImage
+- deltaRed: double
+- deltaRed: double
+- deltaBlue: double
+- pixleFitness: double
+- fitness: double
+- OldFitness: double
+- better: boolean
++ Fitness(BufferedImage Ori)
+# getFitness (String ComPath): boolean
+}
+
+
+
+class Polygongen{
+- PolyNum: int
+- isBetterFile: File
+- isBetter: boolean
+- Path: String
+- pic: BufferedImage
+- polylist: Polygon[]
+- farbe: Color[]
+- Counter: int
+- OriDimension: Dimension
+- xPoly: int[5]
+- yPoly: int[5]
+
++Polygen(height:int, width:int)
++setPolygon(p:Polygon, i:int):void
++getPolygon(i:int): Polygon
++getColor(i:int):Color
++setColor(c:Color, i:int):void
++imageSave(Img: BufferedImage):void
++setDirPath(Path:String):void
+-getDirPath():String
++getFilePath():String
++isBetter():void
++render():void
+
+
+
+
+
+
+}
+
+
+
+
+class Mutation{
+- corners:int
+- choiceA: int
+- choiceB:int
+- plumi: int
+- change: int
+- Rand: Random
+- poly: Polygon
+- col: Color
+- Red: int
+- Grün: int
+- Blue: int
+- xpoint : int[]
+- ypoint: int[]
+- hight: int
+- width: int
+- Ori: BufferedImage
++ Mutation(BufferedImage O)
++ Mutate(): void
+
+
+
+
+
+}
+
+
+
+
+class StretchIcon{
+#proportionate: boolean
+#StretchIcon(image:byte[])
++StretchIcon(imageData: byte[], proportionate:boolean)
++StretchIcon(imageData:byte[], description:String
++StretchIcon(imageData:byte[], description:String, proportionate:boolean)
++StretchIcon(image:Image)
++StretchIcon(image:Image, proportionate:boolean)
++StretchIcon(image:Image, description:String, proportionate:boolean)
++StretchIcon(filename:String)
++StretchIcon(filename:String, proportionate:boolean)
++StretchIcon(filename:String, description:String)
++StretchIcon(filename:String, description:String, proportionate:boolean)
++StretchIcon(location:URL)
+
++StretchIcon(location:URL, proportionate:boolean)
++StretchIcon(location:URL,  description:String, proportionate:boolean)
++StretchIcon(location:URL , description:String)
+
++paintIcon(c:Component, g:Graphics, x:int, y:int)
++getIconWidth():int
++getIconHeight():int
+
+
+
+
+
+}
+
+ Mutation -- Polygongen
+
+ StretchIcon -- Image
+
+Fitness -- GUI
+Fitness -- Polygongen
+
+
+@enduml
+
+class Mutation -- class Polygongen
